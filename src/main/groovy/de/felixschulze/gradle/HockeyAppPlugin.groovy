@@ -25,6 +25,7 @@
 package de.felixschulze.gradle
 
 import com.android.build.gradle.api.ApplicationVariant
+import de.felixschulze.gradle.util.FileHelper
 import org.gradle.api.Plugin
 import org.gradle.api.Project
 import org.gradle.api.Task
@@ -66,7 +67,8 @@ class HockeyAppPlugin implements Plugin<Project> {
                 task.variantName = variant.name
                 task.outputs.upToDateWhen { false }
 
-                if (appPluginExtension.outputDirectory == null) {
+                def files = FileHelper.getFiles(appPluginExtension.appFileNameRegex, appPluginExtension.outputDirectory)
+                if (files.isEmpty()) {
                     task.dependsOn variant.assemble
                 }
 

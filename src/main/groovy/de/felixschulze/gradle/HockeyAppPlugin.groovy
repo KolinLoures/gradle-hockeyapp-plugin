@@ -66,12 +66,6 @@ class HockeyAppPlugin implements Plugin<Project> {
                 task.applicationVariant = variant
                 task.variantName = variant.name
                 task.outputs.upToDateWhen { false }
-
-                def files = FileHelper.getFiles(appPluginExtension.appFileNameRegex, appPluginExtension.outputDirectory)
-                if (files.isEmpty()) {
-                    task.dependsOn variant.assemble
-                }
-
                 task.uploadAllPath = uploadAllPath
 
                 uploadAllTask.dependsOn(task)

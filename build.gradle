@@ -17,8 +17,8 @@ apply plugin: 'release'
 apply plugin: 'codenarc'
 apply plugin: 'com.github.ben-manes.versions'
 
-sourceCompatibility = '1.6'
-targetCompatibility = '1.6'
+sourceCompatibility = '1.7'
+targetCompatibility = '1.7'
 
 
 group = 'de.felixschulze.gradle'

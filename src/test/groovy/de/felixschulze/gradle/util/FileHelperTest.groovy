@@ -49,4 +49,9 @@ class FileHelperTest extends GroovyTestCase {
             FileHelper.getFile(".*", new File("build.gradle"))
         }
     }
+
+    void testCustomDir() {
+        List<File> files = FileHelper.getFiles(".+\\.apk", new File("testapk/"))
+        assertEquals(1, files.size())
+    }
 }

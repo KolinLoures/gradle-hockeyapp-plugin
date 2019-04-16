@@ -50,12 +50,13 @@ class HockeyAppPlugin implements Plugin<Project> {
     static void applyTasks(final Project project) {
 
         if (project.plugins.hasPlugin(AppPlugin)) {
+            HockeyAppPluginExtension appPluginExtension = project.hockeyapp
             AppExtension android = project.android
-            Task uploadAllTask = project.tasks.create("uploadToHockeyApp", Task);
+            Task uploadAllTask = project.tasks.create("uploadToHockeyApp", Task)
             uploadAllTask.group = GROUP_NAME
             uploadAllTask.description = "Uploads all variants to HockeyApp"
             uploadAllTask.outputs.upToDateWhen { false }
-            String uploadAllPath = uploadAllTask.getPath();
+            String uploadAllPath = uploadAllTask.getPath()
 
             android.applicationVariants.all { ApplicationVariant variant ->
                 HockeyAppUploadTask task = project.tasks.create("upload${variant.name.capitalize()}ToHockeyApp", HockeyAppUploadTask)
@@ -64,7 +65,11 @@ class HockeyAppPlugin implements Plugin<Project> {
                 task.applicationVariant = variant
                 task.variantName = variant.name
                 task.outputs.upToDateWhen { false }
-                task.dependsOn variant.assemble
+
+                if (appPluginExtension.outputDirectory == null) {
+                    task.dependsOn variant.assemble
+                }
+
                 task.uploadAllPath = uploadAllPath
 
                 uploadAllTask.dependsOn(task)

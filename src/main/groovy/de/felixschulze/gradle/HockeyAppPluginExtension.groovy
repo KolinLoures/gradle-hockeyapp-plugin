@@ -25,11 +25,13 @@
 package de.felixschulze.gradle
 
 import org.gradle.api.Project
+import org.gradle.api.tasks.InputDirectory
 
 /**
  * Extension for plugin config properties
  */
 class HockeyAppPluginExtension {
+    @InputDirectory
     def Object outputDirectory
     def File symbolsDirectory = null
     def String apiToken = null
@@ -78,6 +80,7 @@ class HockeyAppPluginExtension {
         return project.file(outputDirectory)
     }
 
+    @InputDirectory
     void setOutputDirectory(Object outputDirectory) {
         this.outputDirectory = outputDirectory
     }

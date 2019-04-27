@@ -45,10 +45,10 @@ import org.apache.http.entity.mime.content.StringBody
 import org.apache.http.impl.client.HttpClientBuilder
 import org.gradle.api.DefaultTask
 import org.gradle.api.Nullable
-import org.gradle.api.internal.tasks.options.Option
 import org.gradle.api.logging.Logger
 import org.gradle.api.tasks.InputDirectory
 import org.gradle.api.tasks.TaskAction
+import org.gradle.api.tasks.options.Option
 
 /**
  * Upload task for plugin
